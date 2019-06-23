@@ -6,11 +6,15 @@ const Login = props => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const { login, error, clearErrors, isAuthenticated, token } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
+    }
+    if (token && !isAuthenticated) {
+      console.log('token & !isAuthenticated');
+      authContext.loadUser();
     }
     if (error) {
       if (error.non_field_errors) {

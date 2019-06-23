@@ -1,4 +1,3 @@
-import setAuthToken from '../../utils/setAuthToken';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -34,7 +33,7 @@ export default (state, action) => {
     case LOGIN_FAIL:
     case LOGOUT:
       localStorage.removeItem('token');
-      setAuthToken(localStorage.token);
+
       return {
         ...state,
         token: null,
